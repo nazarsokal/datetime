@@ -1,5 +1,7 @@
 #include <iostream>
 #include "dateTime.h"
+#include <cstring>
+#pragma warning (disable: 496)
 #include <ctime>
 
 DateTime::DateTime()
@@ -59,3 +61,76 @@ DateTime DateTime::now()
     
     return output;
 }
+
+char*  DateTime::toString()
+{
+    char* output = new char[128];
+    
+    std::strcat(output, std::to_string(day).c_str());
+    std::strcat(output, "/");
+    std::strcat(output, std::to_string(month).c_str());
+    std::strcat(output, "/");
+    std::strcat(output, std::to_string(year).c_str());
+    std::strcat(output, " ");
+    std::strcat(output, std::to_string(hours).c_str());
+    std::strcat(output, ":");
+    std::strcat(output, std::to_string(minutes).c_str());
+    std::strcat(output, ":");
+    std::strcat(output, std::to_string(seconds).c_str());
+    std::strcat(output, ":");
+    
+    return output;
+}
+
+DateTime DateTime::addMinutes(int iMinutes)
+{
+    DateTime dt_now = DateTime::now();
+    
+    int new_min = dt_now.minutes + iMinutes;
+    
+    //std::cout << "Minutes: " << new_dt.minutes << "\n";  DateTime new_dt(dt_now.year,dt_now.month,dt_now.day,dt_now.hours,new_min,dt_now.seconds);
+      /*dt_now.minutes += iMinutes;*/
+    
+    if(new_min / 60 >= 1)
+    {
+        for (int i = 0; i <= new_min / 60; i++)
+        {
+            new_min -= 60;
+            dt_now.hours++;
+        }
+    }
+    
+    DateTime new_dt(dt_now.year,dt_now.month,dt_now.day,dt_now.hours,new_min,dt_now.seconds);
+    return new_dt;
+    
+}
+
+//DateTime addSeconds(int minutes)
+//{
+//
+//}
+//
+//
+//DateTime addMonth(int minutes)
+//{
+//
+//}
+//
+//
+//DateTime addDays(int minutes)
+//{
+//
+//}
+//
+//
+//DateTime addYears(int minutes)
+//{
+//
+//}
+//
+//
+//DateTime addHours(int minutes)
+//{
+//
+//}
+

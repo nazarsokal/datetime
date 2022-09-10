@@ -13,4 +13,6 @@ int main()
     DateTime dt { DateTime::now() };
     std::cout<< dt.day << "/" << dt.month << "/" << dt.year << " " << dt.hours << ":" << dt.minutes << ":" << dt.seconds << "\n";
     
+    DateTime dt_changed = dt.addMinutes(180);
+    std::cout<< dt_changed.day << "/" << dt_changed.month << "/" << dt_changed.year << " " << dt_changed.hours << ":" << dt_changed.minutes << ":" << dt_changed.seconds << "\n";
 }
